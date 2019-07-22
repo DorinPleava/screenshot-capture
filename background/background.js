@@ -61,6 +61,9 @@ chrome.runtime.onMessage.addListener((req, sender, res) => {
           if (config.method === 'view') {
             if (req.dpr !== 1 && !config.dpr) {
               crop(image, req.area, req.dpr, config.dpr, config.format, (cropped) => {
+                chrome.tabs.create({
+                  url: cropped
+              });
                 res({message: 'image', image: cropped})
               })
             }
@@ -70,7 +73,10 @@ chrome.runtime.onMessage.addListener((req, sender, res) => {
           }
           else {
             crop(image, req.area, req.dpr, config.dpr, config.format, (cropped) => {
-              res({message: 'image', image: cropped})
+              chrome.tabs.create({
+                url: cropped
+            });
+              // res({message: 'image', image: cropped})
             })
           }
         })
