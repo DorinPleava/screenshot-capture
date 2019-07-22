@@ -76,7 +76,7 @@ chrome.runtime.onMessage.addListener((req, sender, res) => {
               chrome.tabs.create({
                 url: cropped
             });
-              // res({message: 'image', image: cropped})
+              res({message: 'image', image: cropped})
             })
           }
         })
